@@ -20,7 +20,7 @@ jobs:
       - name: Set up Python version
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.12'
 
       - name: Create and start virtual environment
         run: |
@@ -36,7 +36,7 @@ jobs:
         run: zip release.zip ./* -r
 
       - name: Upload artifact for deployment jobs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: python-app
           path: |
@@ -63,14 +63,14 @@ jobs:
 
       
       - name: Login to Azure
-        uses: azure/login@v1
+        uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_9BFB631076D648BF98E91F0B0D331B50 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_95F34B744C5045BF8473F2F6E7AE0664 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_34C5C01B3A5349ABA6B427366915A936 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_8CFA7C8BA21A4A88855A9554A6A78C10 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_CA820D12718A4864859A3DF191573A8D }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_86BAD25A2EF84B93933602DB88D97534 }}
 
       - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
           app-name: 'markman-dev-eastus-app'
